@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'factory.apps.FactoryConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -85,6 +86,7 @@ DATABASES = {
         'PASSWORD': 'zaq12wsx',
         'HOST': '127.0.0.1',
         'PORT': '52000',
+        'SCHEMAS': 'public,core,config,material,interface', 
     },
     'other': {
         'ENGINE': 'django.db.backends.sqlite3',

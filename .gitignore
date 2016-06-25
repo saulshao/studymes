@@ -11,6 +11,7 @@ Desktop.ini
 *.sqllite3
 dist
 build
+migrations
 
 # My configurations:
 db.ini
