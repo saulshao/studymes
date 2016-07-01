@@ -10,7 +10,7 @@ class Nation(models.Model):
         db_table = u'nation'
 
 class City(models.Model):
-    models.ForeignKey(Nation, on_delete=models.CASCADE)
+    nation = models.ForeignKey(Nation, on_delete=models.CASCADE, default = 0)
     code = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     desc = models.CharField(max_length=2000)
@@ -27,17 +27,18 @@ class Company(models.Model):
         db_table = u'company'
 
 class Factory(models.Model):
-    models.ForeignKey(City, on_delete=models.CASCADE)
-    models.ForeignKey(Company, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE,  default = 0)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE,default = 0)
     code = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     desc = models.CharField(max_length=2000)
+    address = models.CharField(max_length=2000,default='Unknown')
 
     class Meta:
         db_table = u'factory'
 
 class Workshop(models.Model):
-    models.ForeignKey(Factory, on_delete=models.CASCADE)
+    factory = models.ForeignKey(Factory, on_delete=models.CASCADE, default = 0)
     code = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     desc = models.CharField(max_length=2000)
@@ -46,10 +47,19 @@ class Workshop(models.Model):
         db_table = u'workshop'
 
 class Line(models.Model):
-    models.ForeignKey(Workshop, on_delete=models.CASCADE)
+    workshop = models.ForeignKey(Workshop, on_delete=models.CASCADE, default = 0)
     code = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     desc = models.CharField(max_length=2000)
 
     class Meta:
         db_table = u'line'
+
+class Station(models.Model):
+    line = models.ForeignKey(Line, on_delete=models.CASCADE, default = 0)
+    code = models.CharField(max_length=20)
+    name = models.CharField(max_length=200)
+    desc = models.CharField(max_length=2000)
+
+    class Meta:
+        db_table = u'station'
