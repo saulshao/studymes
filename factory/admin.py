@@ -71,7 +71,7 @@ class LineAdmin(admin.ModelAdmin):
 
 class StationAdmin(admin.ModelAdmin):
     list_display = ('code', 'name', 'line')
-    search_fields = ['line__name']
+    list_filter = (('line__name'),)
     #inlines = [ChoiceInlineForStation]
 
 admin.site.register(Nation, NationAdmin)
