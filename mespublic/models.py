@@ -46,6 +46,10 @@ class MesCommon(models.Model):
                                     help_text='User account who updates the row',
                                     editable=False
                                 )
+
+    def __str__ (self):
+        return self.name
+        
     class Meta:
         abstract = True
         ordering = ['code','name']

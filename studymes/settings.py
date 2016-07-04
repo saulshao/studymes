@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'factory.apps.FactoryConfig',
+    'material.apps.MaterialConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
