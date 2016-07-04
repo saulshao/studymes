@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+#basic mes object definition which has some shared attributes.
 class MesCommon(models.Model):
     code = models.CharField(
                             max_length=20, 
