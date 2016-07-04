@@ -4,6 +4,8 @@ from django.db import models
 from mespublic.models import MesCommon
 
 # Create your models here.
+
+#nation or country
 class Nation(MesCommon):
 
     def __str__ (self):
@@ -12,6 +14,7 @@ class Nation(MesCommon):
     class Meta:
         db_table = u'nation'
 
+#City
 class City(MesCommon):
     nation = models.ForeignKey(
                                 Nation, 
@@ -25,6 +28,7 @@ class City(MesCommon):
     class Meta:
         db_table = u'city'
 
+#Company
 class Company(MesCommon):
     def __str__ (self):
         return self.name
@@ -32,6 +36,7 @@ class Company(MesCommon):
     class Meta:
         db_table = u'company'
 
+#Department belong to company
 class Department(MesCommon):
     company = models.ForeignKey(
                                 Company, 
@@ -44,6 +49,7 @@ class Department(MesCommon):
     class Meta:
         db_table = u'department'
 
+#Factory
 class Factory(MesCommon):
     city = models.ForeignKey(
                              City, 
@@ -67,6 +73,7 @@ class Factory(MesCommon):
     class Meta:
         db_table = u'factory'
 
+#Workshop in factory
 class Workshop(MesCommon):
     factory = models.ForeignKey(
                                 Factory, 
@@ -79,12 +86,14 @@ class Workshop(MesCommon):
     class Meta:
         db_table = u'workshop'
 
-
+#line in workshop
 class Line(MesCommon):
+
     LINE_TYPE = (
-        (1, 'Line'),
-        (2, 'Cell'),
+        (1, 'Line'), #flow line
+        (2, 'Cell'), #cell line
     )
+
     workshop = models.ForeignKey( Workshop, 
                                   on_delete=models.PROTECT, 
                                   default = 0
@@ -104,6 +113,7 @@ class Line(MesCommon):
     class Meta:
         db_table = u'line'
 
+#station in line
 class Station(MesCommon):
     line = models.ForeignKey(
                               Line, 
