@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 #import base model
-from mespublic.models import MesCommon
+from mespublic.models import *
 
 # Create your models here.
 
@@ -73,11 +73,13 @@ class Employeeship(models.Model):
                                     on_delete=models.PROTECT, 
                                     default = 0
                                   )
+                                  
     def __str__ (self):
         return self.name
 
     class Meta:
         db_table = u'employeeship'
+        
 #Factory
 class Factory(MesCommon):
     city = models.ForeignKey(
@@ -96,15 +98,11 @@ class Factory(MesCommon):
                                 default='Unknown'
                                 )
 
-    
     def __str__ (self):
         return self.name
 
     class Meta:
         db_table = u'factory'
-
-    
-    
 
 #Workshop in factory
 class Workshop(MesCommon):
