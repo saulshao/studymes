@@ -33,7 +33,7 @@ class City(MesCommon):
 class Company(MesCommon):
     def __str__ (self):
         return self.name
-
+        
     class Meta:
         db_table = u'company'
 
@@ -42,18 +42,42 @@ class Department(MesCommon):
     company = models.ForeignKey(
                                 Company, 
                                 on_delete=models.PROTECT, 
-                                default = 0)
+                                default = 0
+                                )
     parent_department = ForeignKey(
-                                        'self', 
-                                        on_delete=models.PROTECT, 
-                                        default = 1)
-    
+                                    'self', 
+                                    on_delete=models.PROTECT, 
+                                    default = 1
+                                  )
+    #Link department to user                            
+    employees = models.ManyToManyField(
+                                        User,
+                                        through='Employeeship',
+                                        through_fields=('department', 'user'),
+                                      )
+                                      
     def __str__ (self):
         return self.name
 
     class Meta:
         db_table = u'department'
 
+class Employeeship(models.Model):
+    user = models.ForeignKey(
+                                User, 
+                                on_delete=models.PROTECT, 
+                                default = 0
+                            )
+    department = models.ForeignKey(
+                                    Department, 
+                                    on_delete=models.PROTECT, 
+                                    default = 0
+                                  )
+    def __str__ (self):
+        return self.name
+
+    class Meta:
+        db_table = u'employeeship'
 #Factory
 class Factory(MesCommon):
     city = models.ForeignKey(
@@ -71,14 +95,16 @@ class Factory(MesCommon):
                                 max_length=2000, 
                                 default='Unknown'
                                 )
-    #linke factory to user                            
-    users = models.ManyToManyField(User)
+
     
     def __str__ (self):
         return self.name
 
     class Meta:
         db_table = u'factory'
+
+    
+    
 
 #Workshop in factory
 class Workshop(MesCommon):
