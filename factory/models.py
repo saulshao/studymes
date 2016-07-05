@@ -43,7 +43,11 @@ class Department(MesCommon):
                                 Company, 
                                 on_delete=models.PROTECT, 
                                 default = 0)
-  
+    parent_department = ForeignKey(
+                                        'self', 
+                                        on_delete=models.PROTECT, 
+                                        default = 1)
+    
     def __str__ (self):
         return self.name
 
@@ -67,7 +71,9 @@ class Factory(MesCommon):
                                 max_length=2000, 
                                 default='Unknown'
                                 )
-
+    #linke factory to user                            
+    users = models.ManyToManyField(User)
+    
     def __str__ (self):
         return self.name
 
