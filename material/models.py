@@ -22,8 +22,6 @@ class MaterialCategory(MesCommon):
     enabled = models.BooleanField(
                                   default=True
                                  )
-    
-
     class Meta:
         db_table = u'material_category'
 
