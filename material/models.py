@@ -3,15 +3,10 @@ from django.db import models
 # Create your models here.
 
 #import base model
-from mespublic.models import MesCommon
+from mespublic.models import Common, Rowtracking
 from factory.models import *
 
-class MaterialCategory(MesCommon):
-    factory = models.ForeignKey(
-                                Factory, 
-                                on_delete=models.PROTECT, 
-                                default = 0
-                                )
+class MaterialCategory(Common, Rowtracking):
 
     parent_material_category = models.ForeignKey(
                                                     'self', 
@@ -25,13 +20,8 @@ class MaterialCategory(MesCommon):
     class Meta:
         db_table = u'material_category'
 
-class Material(MesCommon):
+class Material(Common, Rowtracking):
 
-    factory = models.ForeignKey(
-                                Factory, 
-                                on_delete=models.PROTECT, 
-                                default = 0
-                                )
     material_category = models.ForeignKey(
                                             MaterialCategory, 
                                             on_delete=models.PROTECT, 

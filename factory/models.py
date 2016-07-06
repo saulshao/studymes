@@ -7,7 +7,7 @@ from mespublic.models import *
 # Create your models here.
 
 #nation or country
-class Nation(MesCommon):
+class Nation(Common, Rowtracking):
 
     def __str__ (self):
         return self.name
@@ -16,7 +16,7 @@ class Nation(MesCommon):
         db_table = u'nation'
 
 #City
-class City(MesCommon):
+class City(Common, Rowtracking):
     nation = models.ForeignKey(
                                 Nation, 
                                 on_delete=models.PROTECT, 
@@ -30,7 +30,7 @@ class City(MesCommon):
         db_table = u'city'
 
 #Company
-class Company(MesCommon):
+class Company(Common, Rowtracking):
     def __str__ (self):
         return self.name
         
@@ -38,13 +38,13 @@ class Company(MesCommon):
         db_table = u'company'
 
 #Department belong to company
-class Department(MesCommon):
+class Department(Common, Rowtracking):
     company = models.ForeignKey(
                                 Company, 
                                 on_delete=models.PROTECT, 
                                 default = 0
                                 )
-    parent_department = ForeignKey(
+    parent_department = models.ForeignKey(
                                     'self', 
                                     on_delete=models.PROTECT, 
                                     default = 1
@@ -81,7 +81,7 @@ class Employeeship(models.Model):
         db_table = u'employeeship'
         
 #Factory
-class Factory(MesCommon):
+class Factory(Common, Rowtracking):
     city = models.ForeignKey(
                              City, 
                              on_delete=models.PROTECT, 
@@ -105,7 +105,7 @@ class Factory(MesCommon):
         db_table = u'factory'
 
 #Workshop in factory
-class Workshop(MesCommon):
+class Workshop(Common, Rowtracking):
     factory = models.ForeignKey(
                                 Factory, 
                                 on_delete=models.PROTECT, 
@@ -118,7 +118,7 @@ class Workshop(MesCommon):
         db_table = u'workshop'
 
 #line in workshop
-class Line(MesCommon):
+class Line(Common, Rowtracking):
 
     LINE_TYPE = (
         (1, 'Line'), #flow line
@@ -145,7 +145,7 @@ class Line(MesCommon):
         db_table = u'line'
 
 #station in line
-class Station(MesCommon):
+class Station(Common, Rowtracking):
     line = models.ForeignKey(
                               Line, 
                               on_delete=models.PROTECT, 

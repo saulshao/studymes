@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 #basic mes object definition which has some shared attributes.
-class MesCommon(models.Model):
+class Common(models.Model):
     code = models.CharField(
                             max_length=20, 
                             unique = True, 
@@ -22,6 +22,15 @@ class MesCommon(models.Model):
                             null = True,
                             help_text = 'Long description, full name'
                             )
+
+    def __str__ (self):
+        return self.name
+        
+    class Meta:
+        abstract = True
+        ordering = ['code','name']
+
+class Rowtracking(models.Model):
     created_time_stamp = models.DateTimeField(
                                                 auto_now_add=True,
                                                 null=True,
@@ -47,9 +56,5 @@ class MesCommon(models.Model):
                                     editable=False
                                 )
 
-    def __str__ (self):
-        return self.name
-        
     class Meta:
         abstract = True
-        ordering = ['code','name']
