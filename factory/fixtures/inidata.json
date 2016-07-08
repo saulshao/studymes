@@ -1,0 +1,47 @@
+[
+  {
+    "model": "factory.region",
+    "pk": 1,
+    "fields": {
+      "code": "CN",
+      "short_name": "China",
+      "name": "中国",
+      "desc":"中华人民共和国,PRC"
+      
+    }
+  },
+  {
+    "model": "factory.region",
+    "pk": 2,
+    "fields": {
+      "code": "GD",
+      "short_name": "Guangdong",
+      "name": "广东省",
+      "desc":"中国大陆东南角的省份",
+      "parent_id":1
+    }
+  },
+  {
+    "model": "factory.region",
+    "pk": 3,
+    "fields": {
+      "code": "DG",
+      "short_name": "Dongguan",
+      "name": "东莞市",
+      "desc":"深圳附近的二线城市",
+      "parent_id":2
+   }
+   
+  },
+  {
+    "model": "factory.region",
+    "pk": 4,
+    "fields": {
+      "code": "SZ",
+      "short_name": "Shenzhen",
+      "name": "深圳市",
+      "desc":"中国大陆东南角的大城市",
+      "parent_id":2
+          }
+  }
+]

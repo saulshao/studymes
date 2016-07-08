@@ -6,31 +6,18 @@ from mespublic.models import *
 
 # Create your models here.
 
-#nation or country
-class Nation(Common, Rowtracking):
+#Administrative region
+class Region(Common, Rowtracking,Recurrence):
 
     def __str__ (self):
         return self.name
 
     class Meta:
-        db_table = u'nation'
-
-#City
-class City(Common, Rowtracking):
-    nation = models.ForeignKey(
-                                Nation, 
-                                on_delete=models.PROTECT, 
-                                default = 0
-                                )
-
-    def __str__ (self):
-        return self.name
-
-    class Meta:
-        db_table = u'city'
-
+        db_table = u'region'
+        
 #Company
 class Company(Common, Rowtracking):
+
     def __str__ (self):
         return self.name
         
@@ -38,17 +25,13 @@ class Company(Common, Rowtracking):
         db_table = u'company'
 
 #Department belong to company
-class Department(Common, Rowtracking):
+class Department(Common, Rowtracking,Recurrence):
     company = models.ForeignKey(
                                 Company, 
                                 on_delete=models.PROTECT, 
-                                default = 0
+                                null = True,
                                 )
-    parent_department = models.ForeignKey(
-                                    'self', 
-                                    on_delete=models.PROTECT, 
-                                    default = 1
-                                  )
+
     #Link department to user                            
     employees = models.ManyToManyField(
                                         User,
@@ -66,12 +49,12 @@ class Employeeship(models.Model):
     user = models.ForeignKey(
                                 User, 
                                 on_delete=models.PROTECT, 
-                                default = 0
+                                null = True,
                             )
     department = models.ForeignKey(
                                     Department, 
                                     on_delete=models.PROTECT, 
-                                    default = 0
+                                    null = True,
                                   )
                                   
     def __str__ (self):
@@ -82,20 +65,21 @@ class Employeeship(models.Model):
         
 #Factory
 class Factory(Common, Rowtracking):
-    city = models.ForeignKey(
-                             City, 
-                             on_delete=models.PROTECT, 
-                             default = 0
+    region = models.ForeignKey(
+                             Region, 
+                             on_delete=models.PROTECT,
+                             null=True,
+                             blank=True, 
                              )
     company = models.ForeignKey(
                             Company, 
                             on_delete=models.PROTECT,
-                            default = 0
+                            null = True,
                             )
 
     address = models.CharField(
                                 max_length=2000, 
-                                default='Unknown'
+                                default='UNKNOWN'
                                 )
 
     def __str__ (self):
@@ -109,7 +93,7 @@ class Workshop(Common, Rowtracking):
     factory = models.ForeignKey(
                                 Factory, 
                                 on_delete=models.PROTECT, 
-                                default = 0)
+                                null = True,)
 
     def __str__ (self):
         return self.name
@@ -127,15 +111,15 @@ class Line(Common, Rowtracking):
 
     workshop = models.ForeignKey( Workshop, 
                                   on_delete=models.PROTECT, 
-                                  default = 0
+                                  null = True,
                                   )
     department = models.ForeignKey( Department, 
                                     on_delete=models.PROTECT, 
-                                    default = 0
+                                    null = True,
                                     )
     line_type = models.IntegerField(
                                     choices=LINE_TYPE,
-                                    default = 1
+                                    null = True,
                                     )
 
     def __str__ (self):
@@ -149,7 +133,7 @@ class Station(Common, Rowtracking):
     line = models.ForeignKey(
                               Line, 
                               on_delete=models.PROTECT, 
-                              default = 0
+                              null = True,
                             )
 
     def __str__ (self):

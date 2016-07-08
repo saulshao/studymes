@@ -3,23 +3,15 @@ from django.contrib import admin
 # Register your models here.
 from .models import *
 
-class ChoiceInlineForNation(admin.TabularInline ):
-    model = City
-    extra = 0
-
-class NationAdmin(admin.ModelAdmin):
-    list_display = ('code', 'name')
-    inlines = [ChoiceInlineForNation]
-
-class ChoiceInlineForCity(admin.TabularInline ):
+class ChoiceInlineForRegion(admin.TabularInline ):
     model = Factory
     extra = 0
 
-class CityAdmin(admin.ModelAdmin):
-    list_display = ('code', 'name', 'nation')
-    search_fields = ['nation__name']
-    list_filter = ['nation__name']
-    inlines = [ChoiceInlineForCity]
+class RegionAdmin(admin.ModelAdmin):
+    list_display = ('code', 'name', 'short_name', 'parent', 'desc')
+    search_fields = ['name','code','short_name']
+    #list_filter = ['nation__name']
+    inlines = [ChoiceInlineForRegion]
 
 class ChoiceInlineForCompany(admin.TabularInline ):
     model = Department
@@ -44,9 +36,9 @@ class ChoiceInlineForFactory(admin.TabularInline ):
     extra = 0
 
 class FactoryAdmin(admin.ModelAdmin):
-    list_display = ('code', 'name', 'company', 'city')
-    search_fields = ['city__name']
-    list_filter = ['city__name']
+    list_display = ('code', 'name', 'company', 'region')
+    search_fields = ['region__name']
+    list_filter = ['region__name']
     inlines = [ChoiceInlineForFactory]
 
 class ChoiceInlineForWorkshop(admin.TabularInline ):
@@ -74,8 +66,7 @@ class StationAdmin(admin.ModelAdmin):
     list_filter = (('line__name'),)
     #inlines = [ChoiceInlineForStation]
 
-admin.site.register(Nation, NationAdmin)
-admin.site.register(City, CityAdmin)
+admin.site.register(Region, RegionAdmin)
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(Department, DepartmentAdmin)
 admin.site.register(Factory, FactoryAdmin)

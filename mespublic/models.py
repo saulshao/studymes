@@ -58,3 +58,16 @@ class Rowtracking(models.Model):
 
     class Meta:
         abstract = True
+
+class Recurrence(models.Model):
+    parent = models.ForeignKey(
+                                 'self', 
+                                 null = True,
+                                 blank = True,
+                                 default = 1
+                                )
+                                
+    class Meta:
+        abstract = True
+
+
