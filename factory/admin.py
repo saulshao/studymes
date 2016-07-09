@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import *
 
-class ChoiceInlineForRegion(admin.TabularInline ):
+class ChoiceInlineForRegion(admin.TabularInline):
     model = Factory
     extra = 0
 
@@ -13,7 +13,7 @@ class RegionAdmin(admin.ModelAdmin):
     #list_filter = ['nation__name']
     inlines = [ChoiceInlineForRegion]
 
-class ChoiceInlineForCompany(admin.TabularInline ):
+class ChoiceInlineForCompany(admin.TabularInline):
     model = Department
     extra = 0
 
@@ -21,7 +21,7 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = ('code', 'name')
     inlines = [ChoiceInlineForCompany]
 
-class ChoiceInlineForDepartment(admin.TabularInline ):
+class ChoiceInlineForDepartment(admin.TabularInline):
     model = Line
     extra = 0
 
@@ -31,7 +31,7 @@ class DepartmentAdmin(admin.ModelAdmin):
     list_filter = ['company__name']
     inlines = [ChoiceInlineForDepartment]
 
-class ChoiceInlineForFactory(admin.TabularInline ):
+class ChoiceInlineForFactory(admin.TabularInline):
     model = Workshop
     extra = 0
 
@@ -41,7 +41,7 @@ class FactoryAdmin(admin.ModelAdmin):
     list_filter = ['region__name']
     inlines = [ChoiceInlineForFactory]
 
-class ChoiceInlineForWorkshop(admin.TabularInline ):
+class ChoiceInlineForWorkshop(admin.TabularInline):
     model = Line
     extra = 0
 
@@ -52,7 +52,7 @@ class WorkshopAdmin(admin.ModelAdmin):
     list_filter = ['factory__name']
     inlines = [ChoiceInlineForWorkshop]
 
-class ChoiceInlineForLine(admin.TabularInline ):
+class ChoiceInlineForLine(admin.TabularInline):
     model = Station
     extra = 0
 
