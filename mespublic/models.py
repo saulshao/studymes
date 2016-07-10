@@ -64,7 +64,8 @@ class Recurrence(models.Model):
                                  'self', 
                                  null = True,
                                  blank = True,
-                                 default = None
+                                 default = None,
+                                 related_name="children",
                                 )
                                 
     class Meta:

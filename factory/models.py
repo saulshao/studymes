@@ -7,7 +7,7 @@ from mespublic.models import *
 # Create your models here.
 
 #Administrative region
-class Region(Common, Rowtracking,Recurrence):
+class Region(Common, Rowtracking, Recurrence):
 
     def __str__ (self):
         return self.name
@@ -25,7 +25,7 @@ class Company(Common, Rowtracking):
         db_table = u'company'
 
 #Department belong to company
-class Department(Common, Rowtracking,Recurrence):
+class Department(Common, Rowtracking, Recurrence):
     company = models.ForeignKey(
                                 Company, 
                                 on_delete=models.PROTECT, 
