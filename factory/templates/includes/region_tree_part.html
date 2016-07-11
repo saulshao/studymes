@@ -1,0 +1,8 @@
+{% load factory_tags %}
+{% if subregions %}<pre class="brush:xml;">
+<ul>{% for region in subregions %}
+<li>{{ region.name }} {% region_tree region %}</li>
+{% endfor %}
+</ul>
+</pre>
+{% endif %}

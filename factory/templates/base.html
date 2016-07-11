@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Personal MES for Django study{% endblock %} - Shao qiang</title>
+</head>
+<body>
+
+{% include "includes/nav.html" %}
+
+{% block content %}
+<div>这里是默认内容，所有继承自这个模板的，如果不覆盖就显示这里的默认内容。</div>
+{% endblock %}
+
+{% include "includes/bottom.html" %}
+
+</body>
+</html>
