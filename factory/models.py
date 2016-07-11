@@ -57,9 +57,6 @@ class Employeeship(models.Model):
                                     null = True,
                                   )
                                   
-    def __str__ (self):
-        return self.name
-
     class Meta:
         db_table = u'employeeship'
         
