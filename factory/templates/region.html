@@ -6,7 +6,7 @@
 <pre class="brush:xml;">
 <ul>
 {% for region in subregions %}
-    <li>{{ region.name }} {% region_tree region %}</li>
+    <li><a href="/admin/factory/region/{{ region.id }}/change">{{ region.name }} {% region_tree region %}</a></li>
 {% endfor %}
 </ul>
 </pre>
