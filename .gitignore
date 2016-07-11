@@ -17,6 +17,5 @@ migrations
 db.ini
 deploy_key_rsa
 
-
 # django
 migrations/*
