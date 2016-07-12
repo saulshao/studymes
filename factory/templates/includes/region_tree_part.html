@@ -1,8 +1,7 @@
 {% load factory_tags %}
-{% if subregions %}<pre class="brush:xml;">
+{% if subregions %}
 <ul>{% for region in subregions %}
 <li><a href="/admin/factory/region/{{ region.id }}/change">{{ region.name }} {% region_tree region %}</a></li>
 {% endfor %}
 </ul>
-</pre>
 {% endif %}
