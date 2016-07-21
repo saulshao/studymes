@@ -94,6 +94,12 @@ DATABASES = {
     'other': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'oracledbeg': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=dggtspbarp01-or.huawei.com)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=barpdev)))',
+        'USER': 'MES_BASE',
+        'PASSWORD': 'huawei123',
     }
 }
 
