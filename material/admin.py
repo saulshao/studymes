@@ -17,4 +17,4 @@ class MaterialCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Material, MaterialAdmin)
 admin.site.register(MaterialCategory, MaterialCategoryAdmin)
-    
+admin.site.register(MaterialBelongtoCategory)
