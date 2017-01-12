@@ -101,7 +101,7 @@ DATABASES = {
     #               (ADDRESS_LIST=
     #                   (ADDRESS=
     #                       (PROTOCOL=TCP)
-    #                       (HOST=dggtspbarp01-or.huawei.com)
+    #                       (HOST=****.YYYY.com)
     #                       (PORT=1521)
     #                   )
     #               )
@@ -109,8 +109,8 @@ DATABASES = {
     #               (SERVICE_NAME=barpdev)
     #            )
     #           )',
-    #   'USER': 'MES_BASE',
-    #   'PASSWORD': 'huawei123',
+    #   'USER': '***',
+    #   'PASSWORD': '***',
     #}
 }
 
